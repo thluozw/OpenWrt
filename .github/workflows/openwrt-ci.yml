@@ -55,22 +55,22 @@ jobs:
 
           df -h
 
-      - name: Update feeds
+      - name: 更新所需文件
         run: |
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
-      - name: Generate configuration file
+      - name: 生成配置文件
         run: |
           cp ./makeconfig.d/x86_64.config ./.config
           make defconfig
 
-      - name: Make download
+      - name: 下载资源
         run: |
           make download -j8
           find ./dl/ -size -1024c -exec rm -f {} \;
 
-      - name: Compile firmware
+      - name: 开始编译
         run: |
           make -j$(nproc) || make -j1 V=s
           echo "======================="
@@ -109,7 +109,7 @@ jobs:
           name: OpenWrt_firmware
           path: ./bin/targets/
 
-      - name: Upload release asset
+      - name: 上传资源
         if: github.event == 'release'
         uses: svenstaro/upload-release-action@v2
         with:
