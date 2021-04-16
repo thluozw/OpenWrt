@@ -121,22 +121,22 @@ jobs:
           cp -rf $(find ./bin/packages/ -type f -name "*.ipk") ./artifact/package/
           cp -rf $(find ./bin/targets/ -type f -name "*.buildinfo" -o -name "*.manifest") ./artifact/buildinfo/
 
-      - name: Deliver buildinfo
+      - name: 打包Log
         uses: actions/upload-artifact@v2
         with:
           name: OpenWrt_buildinfo
           path: ./artifact/buildinfo/
 
-      - name: Deliver package
+      - name: 打包IPK
         uses: actions/upload-artifact@v2
         with:
           name: OpenWrt_package
           path: ./artifact/package/
 
-      - name: Deliver firmware
+      - name: 打包镜像
         uses: actions/upload-artifact@v2
         with:
-          name: OpenWrt_firmware
+          name: OpenWrt_KFERmercer
           path: ./bin/targets/
 
       - name: 上传资源
